@@ -25,12 +25,18 @@ class Home extends Component {
             console.log('tmp', tmp, this.state.someobject)
         })
     }
+
+    countryCodeHandler = () => {
+
+    }
+
     render() {
         return (
             <div>
                 <h1>Task 1</h1>
                 <label>Enter Country Code:</label>
                 <input value={this.state.countryCode} onChange={(event) => this.inputHandler(event.target.value)} />
+                <button type="submit">Search</button>
             </div>
         )
     }
