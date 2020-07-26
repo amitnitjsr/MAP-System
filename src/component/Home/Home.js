@@ -222,7 +222,47 @@ class Home extends Component {
 
 
         // Data set2
-        // Retrive the country with highest and lowest population
+        // 1.Retrive the country with highest and lowest population
+        console.log('Data3', this.state.data3)
+        let min = Number.MAX_SAFE_INTEGER;
+        let max = Number.MIN_SAFE_INTEGER;
+        let maxValue = '';
+        let minValue = '';
+        this.state.data3.forEach((val) => {
+            console.log('val', val.population)
+            if (val.population > max) {
+                max = val.population;
+                maxValue = 'Country: ' + val.country + ',' + 'Population: ' + val.population;
+            }
+            if (val.population < min) {
+                min = val.population;
+                minValue = 'Country: ' + val.country + ',' + 'Population: ' + val.population;
+            }
+        });
+        console.log('maxValue', maxValue, minValue)
+        // 2.Retrive the country with highest male and lowest male population
+
+        min = Number.MAX_SAFE_INTEGER;
+        max = Number.MIN_SAFE_INTEGER;
+        maxValue = '';
+        minValue = '';
+        this.state.data3.forEach((val) => {
+            console.log('populationbygender', val.populationbygender[0].male)
+            if (val.populationbygender[0].male > max) {
+                max = val.populationbygender[0].male;
+                maxValue = 'Country: ' + val.country + ',' + 'Population: ' + val.populationbygender[0].male;
+            }
+            if (val.populationbygender[0].male < min) {
+                min = val.populationbygender[0].male;
+                minValue = 'Country: ' + val.country + ',' + 'Population: ' + val.populationbygender[0].male;
+            }
+        });
+        console.log('val.populationbygender[0].male', maxValue, minValue)
+
+        // 3.Calculate the ratio of male and female in each country and display the ratio along with country name
+        //4. Calculate the ratio of vehicles per person 
+        //5. Calculate the percentage of share by each type of vehicles(public,private,others)
+        //6. Calculate the percentage of public vehicles wrt to total vehicles for country china
 
     }
 
