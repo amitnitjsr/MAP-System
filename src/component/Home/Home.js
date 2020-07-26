@@ -174,38 +174,18 @@ class Home extends Component {
 
     }
 
-    inputHandler = (value) => {
-        this.setState({ countryCode: value })
-    }
-
-    countryCodeHandler = () => {
-        // let tmp = this.state.someobject.CountryCode.filter((val) => Object.entries(val) === this.state.countryCode);
-        let stateName = null;
-        console.log('countryCodeHandler')
-        this.state.someobject.CountryCode.forEach((val) => {
-            let tmp = Object.entries(val);
-            if (parseInt(tmp[0]) === parseInt(this.state.countryCode)) {
-                stateName = tmp[0][1]
-                console.log(tmp[1], tmp[0][1])
-            }
-        })
-
-        if (stateName) {
-            for (const [key, value] of Object.entries(this.state.someobject.States)) {
-                if (`${key}` === stateName)
-                    this.setState({ task1: `${key}: ${value}` })
-                // console.log(`${key}: ${value}`);
-            }
-        }
+    componentDidMount() {
         // Task2
         let task2 = '';
         for (const [key, value] of Object.entries(this.state.someobject.States)) {
+            // eslint-disable-next-line
             task2 += `${key}: ${value[0]}` + ' '
         }
         this.setState({ task2: task2 });
         // Task3
         let task3 = '';
         for (const [key, value] of Object.entries(this.state.someobject.States)) {
+            // eslint-disable-next-line
             task3 += `${key}: ${value[value.length - 1]}` + ' '
         }
         this.setState({ task3: task3 });
@@ -223,13 +203,13 @@ class Home extends Component {
         let combined = {};
         objCombine(this.state.someobject.States, combined);
         objCombine(this.state.someobject1, combined);
-        console.log('Task5 output', combined)
+
         this.setState({ task5: JSON.stringify(combined) })
 
 
         // Data set2
         // 1.Retrive the country with highest and lowest population
-        // console.log('Data3', this.state.data3)
+
         let min = Number.MAX_SAFE_INTEGER;
         let max = Number.MIN_SAFE_INTEGER;
         let maxValue = '';
@@ -238,15 +218,18 @@ class Home extends Component {
             console.log('val', val.population)
             if (val.population > max) {
                 max = val.population;
+                // eslint-disable-next-line
                 maxValue = 'Country: ' + val.country + ',' + 'Population: ' + val.population;
             }
             if (val.population < min) {
                 min = val.population;
+                // eslint-disable-next-line
                 minValue = 'Country: ' + val.country + ',' + 'Population: ' + val.population;
             }
         });
+        // eslint-disable-next-line
         this.setState({ dataTask1: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
-        console.log('maxValue', maxValue, minValue)
+
         // 2.Retrive the country with highest male and lowest male population
 
         min = Number.MAX_SAFE_INTEGER;
@@ -257,19 +240,44 @@ class Home extends Component {
             console.log('populationbygender', val.populationbygender[0].male)
             if (val.populationbygender[0].male > max) {
                 max = val.populationbygender[0].male;
+                // eslint-disable-next-line
                 maxValue = 'Country: ' + val.country + ',' + 'Population: ' + val.populationbygender[0].male;
             }
             if (val.populationbygender[0].male < min) {
                 min = val.populationbygender[0].male;
+                // eslint-disable-next-line
                 minValue = 'Country: ' + val.country + ',' + 'Population: ' + val.populationbygender[0].male;
             }
         });
-        console.log('val.populationbygender[0].male', maxValue, minValue)
+        // eslint-disable-next-line
         this.setState({ dataTask2: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
         // 3.Calculate the ratio of male and female in each country and display the ratio along with country name
         //4. Calculate the ratio of vehicles per person 
         //5. Calculate the percentage of share by each type of vehicles(public,private,others)
         //6. Calculate the percentage of public vehicles wrt to total vehicles for country china
+
+    }
+
+    inputHandler = (value) => {
+        this.setState({ countryCode: value })
+    }
+
+    countryCodeHandler = () => {
+        let stateName = null;
+        this.setState({ task1: null });
+        this.state.someobject.CountryCode.forEach((val) => {
+            let tmp = Object.entries(val);
+            if (parseInt(tmp[0]) === parseInt(this.state.countryCode)) {
+                stateName = tmp[0][1]
+            }
+        })
+
+        if (stateName) {
+            for (const [key, value] of Object.entries(this.state.someobject.States)) {
+                if (`${key}` === stateName)
+                    this.setState({ task1: `${key}: ${value}` })
+            }
+        }
 
     }
 
@@ -281,7 +289,7 @@ class Home extends Component {
                 <input value={this.state.countryCode} onChange={(event) => this.inputHandler(event.target.value)} />
                 <button type="submit" onClick={() => this.countryCodeHandler()}>Search</button>
                 <div>
-                    <span>{this.state.task1 ? 'Task1 output: ' + this.state.task1 : null}</span>
+                    <span>{this.state.task1 ? 'Task1 output: ' + this.state.task1 : 'No code found'}</span>
                 </div>
                 <div>
                     <span>{this.state.task2 ? 'Task2 output: ' + this.state.task2 : null}</span>
