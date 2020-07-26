@@ -220,6 +220,10 @@ class Home extends Component {
         console.log('Task5 output', combined)
         this.setState({ task5: JSON.stringify(combined) })
 
+
+        // Data set2
+        // Retrive the country with highest and lowest population
+
     }
 
     render() {
