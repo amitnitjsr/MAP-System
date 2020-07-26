@@ -175,6 +175,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+
         // Task2
         let task2 = '';
         for (const [key, value] of Object.entries(this.state.someobject.States)) {
@@ -182,6 +183,7 @@ class Home extends Component {
             task2 += `${key}: ${value[0]}` + ' '
         }
         this.setState({ task2: task2 });
+
         // Task3
         let task3 = '';
         for (const [key, value] of Object.entries(this.state.someobject.States)) {
@@ -189,8 +191,8 @@ class Home extends Component {
             task3 += `${key}: ${value[value.length - 1]}` + ' '
         }
         this.setState({ task3: task3 });
-        // Task5
 
+        // Task5
         function objCombine(obj, variable) {
             for (let key of Object.keys(obj)) {
                 if (!variable[key]) variable[key] = {};
@@ -199,17 +201,15 @@ class Home extends Component {
                     variable[key][innerKey] = obj[key][innerKey];
             }
         }
-
         let combined = {};
         objCombine(this.state.someobject.States, combined);
         objCombine(this.state.someobject1, combined);
-
         this.setState({ task5: JSON.stringify(combined) })
 
 
         // Data set2
-        // 1.Retrive the country with highest and lowest population
 
+        // 1.Retrive the country with highest and lowest population
         let min = Number.MAX_SAFE_INTEGER;
         let max = Number.MIN_SAFE_INTEGER;
         let maxValue = '';
@@ -231,13 +231,12 @@ class Home extends Component {
         this.setState({ dataTask1: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
 
         // 2.Retrive the country with highest male and lowest male population
-
         min = Number.MAX_SAFE_INTEGER;
         max = Number.MIN_SAFE_INTEGER;
         maxValue = '';
         minValue = '';
         this.state.data3.forEach((val) => {
-            console.log('populationbygender', val.populationbygender[0].male)
+
             if (val.populationbygender[0].male > max) {
                 max = val.populationbygender[0].male;
                 // eslint-disable-next-line
@@ -251,9 +250,25 @@ class Home extends Component {
         });
         // eslint-disable-next-line
         this.setState({ dataTask2: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
+
         // 3.Calculate the ratio of male and female in each country and display the ratio along with country name
+        let obj = [];
+        this.state.data3.forEach((val) => {
+            let ra = val.populationbygender[0].male / val.populationbygender[1].female
+            obj.push('Country: ' + val.country + ',' + 'Ratio:' + ra)
+        });
+        this.setState({ dataTask3: obj });
+
         //4. Calculate the ratio of vehicles per person 
+        obj = [];
+        this.state.data3.forEach((val) => {
+            let ra = val.TotalVechilescount / val.population
+            obj.push('Vehicle Ratio:' + ra)
+        });
+        this.setState({ dataTask4: obj })
+
         //5. Calculate the percentage of share by each type of vehicles(public,private,others)
+        // console.log('data3', this.state.data3, obj)
         //6. Calculate the percentage of public vehicles wrt to total vehicles for country china
 
     }
@@ -306,6 +321,12 @@ class Home extends Component {
                 </div>
                 <div>
                     <span>{this.state.dataTask2 ? '2: ' + this.state.dataTask2 : null}</span>
+                </div>
+                <div>
+                    <span>{this.state.dataTask3 ? '3: ' + this.state.dataTask3 : null}</span>
+                </div>
+                <div>
+                    <span>{this.state.dataTask4 ? '4: ' + this.state.dataTask4 : null}</span>
                 </div>
             </div >
         )
