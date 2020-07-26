@@ -164,6 +164,12 @@ class Home extends Component {
             }
         ],
 
+        dataTask1: null,
+        dataTask2: null,
+        dataTask3: null,
+        dataTask4: null,
+        dataTask5: null,
+        dataTask6: null,
 
 
     }
@@ -223,7 +229,7 @@ class Home extends Component {
 
         // Data set2
         // 1.Retrive the country with highest and lowest population
-        console.log('Data3', this.state.data3)
+        // console.log('Data3', this.state.data3)
         let min = Number.MAX_SAFE_INTEGER;
         let max = Number.MIN_SAFE_INTEGER;
         let maxValue = '';
@@ -239,6 +245,7 @@ class Home extends Component {
                 minValue = 'Country: ' + val.country + ',' + 'Population: ' + val.population;
             }
         });
+        this.setState({ dataTask1: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
         console.log('maxValue', maxValue, minValue)
         // 2.Retrive the country with highest male and lowest male population
 
@@ -258,7 +265,7 @@ class Home extends Component {
             }
         });
         console.log('val.populationbygender[0].male', maxValue, minValue)
-
+        this.setState({ dataTask2: 'MAX: ' + maxValue + ', ' + 'MIN: ' + minValue })
         // 3.Calculate the ratio of male and female in each country and display the ratio along with country name
         //4. Calculate the ratio of vehicles per person 
         //5. Calculate the percentage of share by each type of vehicles(public,private,others)
@@ -284,6 +291,13 @@ class Home extends Component {
                 </div>
                 <div>
                     <span>{this.state.task5 ? 'Task5 output: ' + this.state.task5 : null}</span>
+                </div>
+                <h1>Task 2</h1>
+                <div>
+                    <span>{this.state.dataTask1 ? '1: ' + this.state.dataTask1 : null}</span>
+                </div>
+                <div>
+                    <span>{this.state.dataTask2 ? '2: ' + this.state.dataTask2 : null}</span>
                 </div>
             </div >
         )
