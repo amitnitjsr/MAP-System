@@ -21,7 +21,153 @@ class Home extends Component {
         task4: null,
         task5: null,
         task6: null,
+        data3: [
+            {
+                "country": "India",
+                "population": 5000,
+                "populationbygender": [
+                    {
+                        "male": 3000
+                    },
+                    {
+                        "female": 2000
+                    }
+                ],
+                "populationbyage": [
+                    {
+                        "18": 1000
+                    },
+                    {
+                        "30": 1000
+                    },
+                    {
+                        "50": 3000
+                    }
+                ],
+                "TotalVechilescount": 8000,
+                "Vechilecountbysector": [
+                    {
+                        "Public": 5000
+                    },
+                    {
+                        "Private": 2500
+                    },
+                    {
+                        "others": 500
+                    }
+                ]
+            },
+            {
+                "country": "China",
+                "population": 8000,
+                "populationbygender": [
+                    {
+                        "male": 6000
+                    },
+                    {
+                        "female": 2000
+                    }
+                ],
+                "populationbyage": [
+                    {
+                        "18": 2000
+                    },
+                    {
+                        "30": 2000
+                    },
+                    {
+                        "50": 4000
+                    }
+                ],
+                "TotalVechilescount": 4000,
+                "Vechilecountbysector": [
+                    {
+                        "Public": 1000
+                    },
+                    {
+                        "Private": 2000
+                    },
+                    {
+                        "others": 1000
+                    }
+                ]
+            },
+            {
+                "country": "UAE",
+                "population": 7000,
+                "populationbygender": [
+                    {
+                        "male": 3000
+                    },
+                    {
+                        "female": 4000
+                    }
+                ],
+                "populationbyage": [
+                    {
+                        "18": 1000
+                    },
+                    {
+                        "30": 3000
+                    },
+                    {
+                        "50": 3000
+                    }
+                ],
+                "TotalVechilescount": 10000,
+                "Vechilecountbysector": [
+                    {
+                        "Public": 5000
+                    },
+                    {
+                        "Private": 2500
+                    },
+                    {
+                        "others": 2500
+                    }
+                ]
+            },
+            {
+                "country": "UK",
+                "population": 12000,
+                "populationbygender": [
+                    {
+                        "male": 7500
+                    },
+                    {
+                        "female": 4500
+                    }
+                ],
+                "populationbyage": [
+                    {
+                        "18": 6000
+                    },
+                    {
+                        "30": 2000
+                    },
+                    {
+                        "50": 4000
+                    }
+                ],
+                "TotalVechilescount": 2000,
+                "Vechilecountbysector": [
+                    {
+                        "Public": 500
+                    },
+                    {
+                        "Private": 1000
+                    },
+                    {
+                        "others": 1000
+                    }
+                ]
+            }
+        ],
+
+
+
     }
+
     inputHandler = (value) => {
         this.setState({ countryCode: value })
     }
@@ -72,11 +218,8 @@ class Home extends Component {
         objCombine(this.state.someobject.States, combined);
         objCombine(this.state.someobject1, combined);
         console.log('Task5 output', combined)
+        this.setState({ task5: JSON.stringify(combined) })
 
-        var x = this.state.someobject.States;
-        var y = this.state.someobject1;
-        var z = Object.assign({}, x, y);
-        console.log(z);
     }
 
     render() {
@@ -98,7 +241,7 @@ class Home extends Component {
                 <div>
                     <span>{this.state.task5 ? 'Task5 output: ' + this.state.task5 : null}</span>
                 </div>
-            </div>
+            </div >
         )
     }
 }
